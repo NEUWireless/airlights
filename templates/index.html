@@ -1,5 +1,11 @@
 {% extends "bootstrap/base.html" %}
 
+{% block scripts %}
+    {{ super() }}
+    {{ colorpicker.loader() }}
+    {{ colorpicker.picker(ids=[".cp"]) }}
+{% endblock %}
+
 {%  block title %}Airlights+{% endblock %}
 
 {% block navbar %}
@@ -34,5 +40,9 @@
         <p>
             {{ form.submit() }}
         </p>
+    </form>
+
+    <form class="verticalform">
+        <input type="text" class="form-control cp" />
     </form>
 {% endblock %}
