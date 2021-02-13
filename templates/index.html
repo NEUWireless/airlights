@@ -1,0 +1,48 @@
+{% extends "bootstrap/base.html" %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ colorpicker.loader() }}
+    {{ colorpicker.picker(ids=[".cp"]) }}
+{% endblock %}
+
+{%  block title %}Airlights+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-fixed-top">
+        <!-- ... -->
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Airlights+</h1>
+    </div>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.color_name.label }}
+            {{ form.color_name(size=32) }}
+            {% for error in form.color_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    <form class="verticalform">
+        <input type="text" class="form-control cp" />
+    </form>
+{% endblock %}
